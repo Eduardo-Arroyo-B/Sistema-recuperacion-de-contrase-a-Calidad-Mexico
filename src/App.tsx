@@ -11,7 +11,7 @@ export default function ResetPasswordForm() {
     // token viene de los params de la URL
     const token = searchParams.get("token");
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
         const API_URL = import.meta.env.VITE_API_URL
@@ -36,6 +36,8 @@ export default function ResetPasswordForm() {
 
             setMessage("Contraseña actualizada con éxito ✅")
         } catch (err) {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             setMessage(err.message)
         }
     };
